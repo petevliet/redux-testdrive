@@ -126,6 +126,19 @@ describe('application logic', () => {
          }));
       });
 
+      it('does not add a vote for entry that is not in current pair', () => {
+          const state = Map({
+            pair: List.of('Sandlot', 'Mighty Ducks'),
+            tally: Map({
+              'Sandlot': 2,
+              'Mighty Ducks': 2
+            })
+          });
+          const nextState = vote(state, 'Godfather III');
+
+          expect(nextState).to.equal(state);
+      });
+
    });
 
 });
